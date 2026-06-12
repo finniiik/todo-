@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+ import React, { useState } from 'react';
 import { FaTrashAlt } from 'react-icons/fa';
 
 export const IndividualProject = ({ project }) => {
