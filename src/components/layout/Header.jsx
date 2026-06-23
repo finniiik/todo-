@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaPizzaSlice } from 'react-icons/fa';
+import { FaMoon } from 'react-icons/fa';
 
 export const Header = ({ darkMode, setDarkMode }) => (
   <header className="header">
@@ -10,17 +10,17 @@ export const Header = ({ darkMode, setDarkMode }) => (
       <div className="settings">
         <ul>
           <li className="settings__add">
-            <button aria-label="Quick add task" type="button">
+            <button aria-label="Быстрое добавление задачи" type="button">
               +
             </button>
           </li>
           <li className="settings__darkmode">
             <button
-              aria-label="Darkmode on/off"
+              aria-label="Тёмная тема"
               type="button"
               onClick={() => setDarkMode(!darkMode)}
             >
-              <FaPizzaSlice />
+              <FaMoon />
             </button>
           </li>
         </ul>

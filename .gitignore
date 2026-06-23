@@ -4,3 +4,6 @@ dist
 *.log
 .vite
 .sixth
+.env
+.env.local
+.env.*.local

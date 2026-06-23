@@ -1,13 +1,13 @@
 export const collatedTasks = [
-  { key: 'INBOX', name: 'Inbox' },
-  { key: 'TODAY', name: 'Today' },
-  { key: 'NEXT_7', name: 'Next 7 Days' },
+  { key: 'INBOX', name: 'Входящие' },
+  { key: 'TODAY', name: 'Сегодня' },
+  { key: 'NEXT_7', name: 'Ближайшие 7 дней' },
 ];
 
 export const defaultProjects = [
-  { projectId: '1', name: 'The Office' },
-  { projectId: '2', name: 'Cooking' },
-  { projectId: '3', name: 'Cleaning' },
-  { projectId: '4', name: 'Sport' },
-  { projectId: '5', name: 'Reading' },
+  { projectId: '1', name: 'Учёба' },
+  { projectId: '2', name: 'Работа' },
+  { projectId: '3', name: 'Дом' },
+  { projectId: '4', name: 'Спорт' },
+  { projectId: '5', name: 'Чтение' },
 ];
