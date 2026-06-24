@@ -841,3 +841,56 @@ main.darkmode .tasks__edit {
   color: #f5f5f5;
   border-color: #db4c3f;
 }
+
+/* Dark theme overrides */
+main.darkmode {
+  background-color: #1f1f1f;
+  color: #f5f5f5;
+  min-height: 100vh;
+}
+main.darkmode .content { background-color: #1f1f1f; }
+main.darkmode .sidebar {
+  background-color: #282828;
+  border-right: 1px solid #333;
+  color: #f5f5f5;
+}
+main.darkmode .sidebar li,
+main.darkmode .sidebar h2,
+main.darkmode .sidebar span { color: #f5f5f5; }
+main.darkmode .sidebar li.active,
+main.darkmode .sidebar li:hover { background-color: #333 !important; }
+main.darkmode .tasks { background-color: #1f1f1f; color: #f5f5f5; }
+main.darkmode .tasks h2,
+main.darkmode .tasks .tasks__list li,
+main.darkmode .tasks__text,
+main.darkmode .tasks__stats,
+main.darkmode .tasks__empty { color: #f5f5f5; }
+main.darkmode .tasks__row { border-bottom: 1px solid #333; }
+main.darkmode .tasks__search,
+main.darkmode .tasks__filters button,
+main.darkmode .add-task__content,
+main.darkmode .add-project__name {
+  background-color: #2b2b2b;
+  color: #f5f5f5;
+  border-color: #444;
+}
+main.darkmode .tasks__filters button.active {
+  background-color: #db4c3f;
+  color: #fff;
+  border-color: #db4c3f;
+}
+main.darkmode .add-task,
+main.darkmode .add-project,
+main.darkmode .add-task__shallow,
+main.darkmode .add-project__text { color: #f5f5f5; }
+main.darkmode .add-task__main,
+main.darkmode .add-project__input {
+  background-color: #2b2b2b;
+  border-color: #444;
+}
+main.darkmode .project-delete-modal,
+main.darkmode .project-delete-modal__inner {
+  background-color: #2b2b2b;
+  color: #f5f5f5;
+  border-color: #444;
+}

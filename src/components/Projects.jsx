@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { IndividualProject } from './IndividualProject.jsx';
-import { defaultProjects } from '../constants';
+import { useTasks } from '../context/TasksContext.jsx';
 
 export const Projects = () => {
   const [active, setActive] = useState(null);
+  const { projects } = useTasks();
 
-  return defaultProjects.map((project) => (
+  return projects.map((project) => (
     <li
       key={project.projectId}
       className={

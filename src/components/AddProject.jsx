@@ -1,8 +1,17 @@
 import React, { useState } from 'react';
+import { useTasks } from '../context/TasksContext.jsx';
 
 export const AddProject = () => {
   const [show, setShow] = useState(false);
   const [projectName, setProjectName] = useState('');
+  const { addProject } = useTasks();
+
+  const handleAdd = () => {
+    if (!projectName.trim()) return;
+    addProject(projectName);
+    setProjectName('');
+    setShow(false);
+  };
 
   return (
     <div className="add-project">
@@ -11,18 +20,26 @@ export const AddProject = () => {
           <input
             value={projectName}
             onChange={(e) => setProjectName(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && handleAdd()}
             className="add-project__name"
             type="text"
             placeholder="Name your project"
           />
-          <button className="add-project__submit" type="button">
+          <button
+            className="add-project__submit"
+            type="button"
+            onClick={handleAdd}
+          >
             Add Project
           </button>
           <span
             className="add-project__cancel"
             role="button"
             tabIndex={0}
-            onClick={() => setShow(false)}
+            onClick={() => {
+              setShow(false);
+              setProjectName('');
+            }}
           >
             Cancel
           </span>

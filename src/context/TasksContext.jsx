@@ -17,23 +17,25 @@ import {
   writeBatch,
 } from 'firebase/firestore';
 import { db, isFirebaseConfigured } from '../firebase.js';
+import { defaultProjects } from '../constants';
 
 const TasksContext = createContext(null);
 
 const STORAGE_KEY = 'todoist_tasks_v1';
+const PROJECTS_KEY = 'todoist_projects_v1';
 
-const loadLocal = () => {
+const loadLocal = (key, fallback = []) => {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? JSON.parse(raw) : [];
+    const raw = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : fallback;
   } catch (e) {
-    return [];
+    return fallback;
   }
 };
 
-const saveLocal = (tasks) => {
+const saveLocal = (key, value) => {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+    localStorage.setItem(key, JSON.stringify(value));
   } catch (e) {
     return;
   }
@@ -41,13 +43,16 @@ const saveLocal = (tasks) => {
 
 export const TasksProvider = ({ children }) => {
   const [tasks, setTasks] = useState([]);
+  const [projects, setProjects] = useState(() =>
+    loadLocal(PROJECTS_KEY, defaultProjects),
+  );
   const [filter, setFilter] = useState('all');
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!isFirebaseConfigured || !db) {
-      setTasks(loadLocal());
+      setTasks(loadLocal(STORAGE_KEY));
       setLoading(false);
       return;
     }
@@ -61,8 +66,12 @@ export const TasksProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (!isFirebaseConfigured) saveLocal(tasks);
+    if (!isFirebaseConfigured) saveLocal(STORAGE_KEY, tasks);
   }, [tasks]);
+
+  useEffect(() => {
+    saveLocal(PROJECTS_KEY, projects);
+  }, [projects]);
 
   const addTask = async (text, dueDate) => {
     const value = text.trim();
@@ -115,6 +124,19 @@ export const TasksProvider = ({ children }) => {
     }
   };
 
+  const addProject = (name) => {
+    const value = (name || '').trim();
+    if (!value) return;
+    setProjects((prev) => [
+      ...prev,
+      { projectId: Date.now().toString(), name: value },
+    ]);
+  };
+
+  const deleteProject = (projectId) => {
+    setProjects((prev) => prev.filter((p) => p.projectId !== projectId));
+  };
+
   const visibleTasks = useMemo(() => {
     return tasks
       .filter((t) => {
@@ -152,6 +174,9 @@ export const TasksProvider = ({ children }) => {
     toggleTask,
     deleteTask,
     clearCompleted,
+    projects,
+    addProject,
+    deleteProject,
     isFirebaseConfigured,
   };
 
