@@ -124,17 +124,23 @@ export const TasksProvider = ({ children }) => {
     }
   };
 
-  const addProject = (name) => {
+  const addProject = (name, color = '#6accbc') => {
     const value = (name || '').trim();
     if (!value) return;
     setProjects((prev) => [
       ...prev,
-      { projectId: Date.now().toString(), name: value },
+      { projectId: Date.now().toString(), name: value, color },
     ]);
   };
 
   const deleteProject = (projectId) => {
     setProjects((prev) => prev.filter((p) => p.projectId !== projectId));
+  };
+
+  const updateProjectColor = (projectId, color) => {
+    setProjects((prev) =>
+      prev.map((p) => (p.projectId === projectId ? { ...p, color } : p)),
+    );
   };
 
   const visibleTasks = useMemo(() => {
@@ -177,6 +183,7 @@ export const TasksProvider = ({ children }) => {
     projects,
     addProject,
     deleteProject,
+    updateProjectColor,
     isFirebaseConfigured,
   };
 

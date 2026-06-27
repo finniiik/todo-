@@ -1,10 +1,18 @@
 import React from 'react';
-import { FaMoon } from 'react-icons/fa';
+import { FaMoon, FaBars } from 'react-icons/fa';
 
-export const Header = ({ darkMode, setDarkMode }) => (
+export const Header = ({ darkMode, setDarkMode, sidebarOpen, setSidebarOpen }) => (
   <header className="header">
     <nav>
       <div className="logo">
+        <button
+          className="header__burger"
+          aria-label="Меню"
+          type="button"
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+        >
+          <FaBars />
+        </button>
         <img src="/images/logo.png" alt="Todoist" />
       </div>
       <div className="settings">

@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import { useTasks } from '../context/TasksContext.jsx';
+import { projectColors } from '../constants';
 
 export const AddProject = () => {
   const [show, setShow] = useState(false);
   const [projectName, setProjectName] = useState('');
+  const [color, setColor] = useState(projectColors[0].value);
   const { addProject } = useTasks();
 
   const handleAdd = () => {
     if (!projectName.trim()) return;
-    addProject(projectName);
+    addProject(projectName, color);
     setProjectName('');
+    setColor(projectColors[0].value);
     setShow(false);
   };
 
@@ -23,14 +26,28 @@ export const AddProject = () => {
             onKeyDown={(e) => e.key === 'Enter' && handleAdd()}
             className="add-project__name"
             type="text"
-            placeholder="Name your project"
+            placeholder="Название проекта"
           />
+          <div className="add-project__colors">
+            {projectColors.map((c) => (
+              <span
+                key={c.value}
+                title={c.name}
+                onClick={() => setColor(c.value)}
+                className={
+                  'add-project__color' +
+                  (color === c.value ? ' add-project__color--active' : '')
+                }
+                style={{ backgroundColor: c.value }}
+              />
+            ))}
+          </div>
           <button
             className="add-project__submit"
             type="button"
             onClick={handleAdd}
           >
-            Add Project
+            Добавить
           </button>
           <span
             className="add-project__cancel"
@@ -41,7 +58,7 @@ export const AddProject = () => {
               setProjectName('');
             }}
           >
-            Cancel
+            Отмена
           </span>
         </div>
       )}
@@ -52,7 +69,7 @@ export const AddProject = () => {
         tabIndex={0}
         onClick={() => setShow(!show)}
       >
-        Add Project
+        Добавить проект
       </span>
     </div>
   );

@@ -894,3 +894,172 @@ main.darkmode .project-delete-modal__inner {
   color: #f5f5f5;
   border-color: #444;
 }
+
+/* ============================================================ */
+/* Fixes: browser-level dark mode, responsiveness, project UI    */
+/* ============================================================ */
+
+html.darkmode,
+body.darkmode {
+  background-color: #1f1f1f;
+  color: #f5f5f5;
+}
+html.darkmode { color-scheme: dark; }
+
+/* Burger menu (mobile) */
+.header__burger {
+  display: none;
+  background: transparent;
+  border: 0;
+  color: #fff;
+  font-size: 18px;
+  margin-right: 10px;
+  cursor: pointer;
+  padding: 6px 8px;
+}
+@media (max-width: 900px) {
+  .header__burger { display: inline-flex; align-items: center; }
+}
+
+/* Sidebar mobile drawer */
+.sidebar__close {
+  display: none;
+  position: absolute;
+  top: 78px;
+  right: 10px;
+  background: transparent;
+  border: 0;
+  font-size: 26px;
+  cursor: pointer;
+  color: inherit;
+}
+.sidebar__backdrop {
+  display: none;
+}
+@media (max-width: 900px) {
+  .sidebar {
+    display: block !important;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    z-index: 200;
+    width: 80vw;
+    max-width: 300px;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.2);
+  }
+  .sidebar.sidebar--open { transform: translateX(0); }
+  .sidebar__close { display: block; }
+  .sidebar__backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 150;
+  }
+  .tasks {
+    width: auto !important;
+    margin-left: 0 !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  .content { grid-template-columns: 1fr; max-width: 100%; }
+}
+
+/* Always show delete/color icons (no hover needed — works on touch) */
+.sidebar__project-delete,
+.sidebar__project-color {
+  display: inline-flex !important;
+  align-items: center;
+  margin-left: 6px;
+  cursor: pointer;
+  color: #888;
+  font-size: 13px;
+  padding: 2px 4px;
+}
+.sidebar__project-color svg { color: #888; }
+.sidebar__project-delete svg { color: #cc5050; }
+
+/* Delete modal positioned relative to the whole project row */
+.sidebar__project { position: relative; }
+.project-delete-modal {
+  position: absolute;
+  top: 30px;
+  right: 8px;
+  z-index: 50;
+}
+.project-delete-modal__inner {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 12px;
+  width: 220px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+.project-delete-modal__inner p { margin: 0 0 10px; font-size: 14px; }
+.project-delete-modal__inner button {
+  background: #db4c3f;
+  color: #fff;
+  border: 0;
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+  margin-right: 8px;
+}
+.project-delete-modal__inner span {
+  cursor: pointer;
+  color: #555;
+  font-size: 14px;
+}
+
+/* Color picker popover (per project) */
+.project-colors-popover {
+  position: absolute;
+  top: 30px;
+  right: 8px;
+  z-index: 50;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  width: 160px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+.project-colors-popover__dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+.project-colors-popover__dot:hover { border-color: #333; }
+
+/* Color picker inside Add Project form */
+.add-project__colors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0;
+}
+.add-project__color {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  display: inline-block;
+}
+.add-project__color--active { border-color: #202020; }
+
+/* Dark-mode tuning for new popovers */
+main.darkmode .project-delete-modal__inner,
+main.darkmode .project-colors-popover {
+  background: #2b2b2b;
+  border-color: #444;
+  color: #f5f5f5;
+}
+main.darkmode .project-delete-modal__inner p,
+main.darkmode .project-delete-modal__inner span { color: #f5f5f5; }
+main.darkmode .add-project__color--active { border-color: #f5f5f5; }
+main.darkmode .sidebar__close { color: #f5f5f5; }

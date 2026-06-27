@@ -8,12 +8,21 @@ import {
 import { Projects } from '../Projects.jsx';
 import { AddProject } from '../AddProject.jsx';
 
-export const Sidebar = () => {
+export const Sidebar = ({ open, onClose }) => {
   const [active, setActive] = useState('inbox');
   const [showProjects, setShowProjects] = useState(true);
 
   return (
-    <div className="sidebar">
+    <div className={'sidebar' + (open ? ' sidebar--open' : '')}>
+      <button
+        type="button"
+        className="sidebar__close"
+        aria-label="Закрыть меню"
+        onClick={onClose}
+      >
+        ×
+      </button>
+
       <ul className="sidebar__generic">
         <li className={active === 'inbox' ? 'active' : undefined}>
           <div role="button" tabIndex={0} onClick={() => setActive('inbox')}>
