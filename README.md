@@ -43,11 +43,8 @@ VITE_FIREBASE_APP_ID=
 
 Проект задеплоен как статическое SPA. Команда сборки `npm run build`, директория сборки `dist`. Перед публикацией в настройках хостинга нужно добавить те же переменные окружения, что и в `.env`.
 
-Ссылка на деплой: https://example.com/todoist-clone (замените на актуальный URL после публикации).
+Ссылка на деплой: https://todo-d-kb.vercel.app/
 
-## Code Climate
-
-[![Maintainability](https://api.codeclimate.com/v1/badges/REPLACE_WITH_TOKEN/maintainability)](https://codeclimate.com/github/USER/REPO/maintainability)
 
 ## Реализованная функциональность
 
@@ -120,9 +117,6 @@ VITE_FIREBASE_APP_ID=
 | Стили и тёмная тема            | src/styles/App.scss                            | всё приложение                 |
 | Константы                      | src/constants/index.js                         | внутренний                     |
 
-## Демонстрация
-
-Короткое демо работы приложения (создание задачи, добавление проекта, переключение темы) находится в файле `docs/demo.gif` (добавьте файл после записи).
 
 ## Вывод
 
