@@ -22,7 +22,7 @@ npm run build
 npm run preview
 ```
 
-Приложение по умолчанию открывается на http://localhost:5173.
+Приложение по умолчанию открывается на http://localhost:3000.
 
 ## Переменные окружения
 
@@ -45,6 +45,8 @@ VITE_FIREBASE_APP_ID=
 
 Ссылка на деплой: https://todo-d-kb.vercel.app/
 
+## Code Climate
+[![Maintainability](https://qlty.sh/gh/finniiik/projects/todo-/maintainability.svg)](https://qlty.sh/gh/finniiik/projects/todo-)
 
 ## Реализованная функциональность
 
